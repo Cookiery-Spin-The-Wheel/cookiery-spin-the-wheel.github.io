@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="pl" data-design="modern">
+<!-- DESIGN SWITCH: data-design="modern" (new look) or "classic" (original look). Everything else stays the same. -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cookiery 🎄</title>
+<meta name="description" content="zakręć kołem i wygraj nagrodę · nocny market, warszawa">
+<meta property="og:title" content="cookiery 🎄">
+<meta property="og:description" content="zakręć kołem i wygraj nagrodę · nocny market, warszawa">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@400;600;700;800;900&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink: #FFC0CB;
+    --pink-light: #FFE4EA;
+    --pink-deep: #D4637A;
+    --brown: #513724;
+    --brown-mid: #7A5640;
+    --cream: #F9E2C7;
+    --warm-white: #FFF8F5;
+    --xmas-red: #C1272D;
+    --xmas-green: #2F6B4D;
+    --insta: #E1306C;
+    --google: #4285F4;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--pink-light);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden;
+  }
+
+  .app {
+    width: 100%;
+    max-width: 430px;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ── SCREENS ── */
+  .screen {
+    display: none;
+    width: 100%;
+    min-height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 48px;
+    animation: fadeUp 0.35s ease both;
+  }
+  .screen.active { display: flex; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── HEADER ── */
+  .header {
+    width: 100%;
+    background: var(--brown);
+    padding: 32px 24px 56px;
+    text-align: center;
+    position: relative;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -30px; left: 0; right: 0;
+    height: 60px;
+    background: var(--brown);
+    clip-path: ellipse(52% 100% at 50% 0%);
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 46px;
+    color: var(--pink-light);
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+  .logo-tag {
+    font-size: 11px;
+    color: var(--pink);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-top: 5px;
+  }
+
+  /* ── WELCOME ── */
+  .welcome-body {
+    margin-top: 58px;
+    padding: 0 28px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .big-cookie {
+    font-size: 72px;
+    display: block;
+    animation: rock 2.8s ease-in-out infinite;
+    filter: drop-shadow(0 8px 16px rgba(60,20,10,0.18));
+  }
+  @keyframes rock {
+    0%,100% { transform: rotate(-8deg) scale(1); }
+    50%      { transform: rotate(8deg) scale(1.06); }
+  }
+
+  .welcome-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    color: var(--brown);
+    line-height: 1.25;
+    margin-top: 16px;
+  }
+  .welcome-sub {
+    font-size: 15px;
+    color: var(--brown-mid);
+    margin-top: 10px;
+    line-height: 1.65;
+  }
+
+  .prizes-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 24px;
+    width: 100%;
+  }
+  .prize-chip {
+    background: var(--warm-white);
+    border: 1.5px solid var(--pink);
+    border-radius: 14px;
+    padding: 10px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--brown);
+    text-align: center;
+    line-height: 1.4;
+  }
+  .prize-chip span { display: block; font-size: 20px; margin-bottom: 4px; }
+
+  /* ── BUTTONS ── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.12s, box-shadow 0.12s;
+    letter-spacing: 0.01em;
+  }
+  .btn:active { transform: translateY(3px); }
+
+  .btn-primary {
+    background: var(--brown);
+    color: var(--pink-light);
+    padding: 18px 52px;
+    box-shadow: 0 6px 0 #2e1d10;
+    margin-top: 28px;
+    width: 100%;
+  }
+  .btn-primary:active { box-shadow: 0 3px 0 #2e1d10; }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--brown-mid);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 16px;
+    margin-top: 10px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .btn-insta {
+    background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: white;
+    padding: 16px 24px;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 16px;
+    box-shadow: 0 5px 0 rgba(0,0,0,0.2);
+  }
+  .btn-insta:active { box-shadow: 0 2px 0 rgba(0,0,0,0.2); }
+
+  .btn-google {
+    background: white;
+    color: #333;
+    padding: 16px 24px;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 16px;
+    border: 2px solid #e0e0e0;
+    box-shadow: 0 5px 0 rgba(0,0,0,0.1);
+  }
+  .btn-google:active { box-shadow: 0 2px 0 rgba(0,0,0,0.1); }
+
+  /* ── SPIN SCREEN ── */
+  .spin-body {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+    width: 100%;
+  }
+
+  .spin-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--brown);
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  .spin-sub {
+    font-size: 13px;
+    color: var(--brown-mid);
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .wheel-wrap {
+    position: relative;
+    width: 300px;
+    height: 300px;
+  }
+  #wheel {
+    width: 300px;
+    height: 300px;
+    display: block;
+  }
+  .wheel-pin {
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 13px solid transparent;
+    border-right: 13px solid transparent;
+    border-top: 26px solid var(--brown);
+    filter: drop-shadow(0 3px 4px rgba(0,0,0,0.3));
+    z-index: 10;
+  }
+  .wheel-hub {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 52px; height: 52px;
+    background: var(--warm-white);
+    border: 4px solid var(--brown);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+    z-index: 10;
+  }
+
+  .spin-launch {
+    background: var(--pink-deep);
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    border: none;
+    border-radius: 50px;
+    padding: 18px 64px;
+    cursor: pointer;
+    margin-top: 32px;
+    box-shadow: 0 6px 0 #a8324a;
+    transition: transform 0.12s, box-shadow 0.12s;
+    letter-spacing: 0.02em;
+  }
+  .spin-launch:active { transform: translateY(3px); box-shadow: 0 3px 0 #a8324a; }
+  .spin-launch:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+  /* ── RESULT SCREEN ── */
+  .result-body {
+    margin-top: 48px;
+    width: 100%;
+    padding: 0 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .won-badge {
+    background: var(--pink-deep);
+    color: white;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 6px 22px;
+    border-radius: 50px;
+    margin-bottom: 14px;
+  }
+
+  .prize-emoji { font-size: 80px; margin-bottom: 10px; animation: pop 0.4s cubic-bezier(0.34,1.56,0.64,1) both; }
+  @keyframes pop { from { transform: scale(0.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+  .prize-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: var(--brown);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .prize-desc {
+    font-size: 15px;
+    color: var(--brown-mid);
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+
+  /* countdown */
+  .timer-box {
+    background: var(--brown);
+    color: var(--pink-light);
+    border-radius: 18px;
+    padding: 14px 28px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 22px;
+  }
+  .timer-label { font-size: 11px; opacity: 0.65; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+  .timer-digits { font-size: 38px; font-weight: 900; letter-spacing: 0.08em; font-variant-numeric: tabular-nums; }
+
+  /* action section */
+  .action-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--brown);
+    margin-bottom: 6px;
+  }
+  .action-sub {
+    font-size: 13px;
+    color: var(--brown-mid);
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  /* tabs */
+  .tabs {
+    display: flex;
+    width: 100%;
+    background: var(--warm-white);
+    border-radius: 16px 16px 0 0;
+    overflow: hidden;
+    border: 1.5px solid var(--pink);
+    border-bottom: none;
+  }
+  .tab {
+    flex: 1;
+    padding: 12px 8px;
+    text-align: center;
+    font-weight: 800;
+    font-size: 14px;
+    cursor: pointer;
+    color: var(--brown-mid);
+    border: none;
+    background: transparent;
+    transition: background 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .tab.active {
+    background: var(--brown);
+    color: var(--pink-light);
+  }
+
+  .tab-panel {
+    display: none;
+    width: 100%;
+    background: var(--warm-white);
+    border: 1.5px solid var(--pink);
+    border-top: none;
+    border-radius: 0 0 16px 16px;
+    padding: 20px 18px;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+  }
+  .tab-panel.active { display: flex; }
+
+  .tab-instruction {
+    font-size: 14px;
+    color: var(--brown-mid);
+    line-height: 1.6;
+  }
+  .tab-instruction strong { color: var(--brown); }
+
+  .step-pills {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+  .step-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--pink-light);
+    border-radius: 12px;
+    padding: 10px 14px;
+    text-align: left;
+  }
+  .step-pill-num {
+    width: 26px; height: 26px;
+    background: var(--brown);
+    color: var(--pink-light);
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .step-pill-text { font-size: 13px; color: var(--brown); font-weight: 600; line-height: 1.4; }
+
+  .counter-note {
+    background: var(--pink-light);
+    border: 1.5px dashed var(--pink-deep);
+    border-radius: 14px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--brown);
+    font-weight: 700;
+    width: 100%;
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+
+  /* ── HOW-TO ── */
+  .howto-body {
+    margin-top: 48px;
+    width: 100%;
+    padding: 0 24px;
+  }
+  .howto-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--brown);
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .how-step {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin-bottom: 22px;
+  }
+  .how-num {
+    width: 38px; height: 38px;
+    background: var(--brown);
+    color: var(--pink-light);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+  .how-content { flex: 1; padding-top: 2px; }
+  .how-head { font-weight: 800; color: var(--brown); font-size: 15px; }
+  .how-text { font-size: 13px; color: var(--brown-mid); margin-top: 3px; line-height: 1.55; }
+  .hr { width: 100%; height: 1px; background: var(--pink); margin: 4px 0 22px; }
+  .fine-print {
+    font-size: 12px;
+    color: var(--brown-mid);
+    text-align: center;
+    line-height: 1.8;
+    margin-bottom: 28px;
+  }
+
+  /* confetti */
+  #confetti { pointer-events: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 999; display: none; }
+
+
+  /* ══════════════════════════════════════
+     ADDED (works in both designs)
+  ══════════════════════════════════════ */
+  .lang {
+    position: absolute; top: 14px; right: 14px; z-index: 30;
+    display: flex; gap: 2px; padding: 3px;
+    background: rgba(255,243,236,0.14);
+    border: 1px solid rgba(255,243,236,0.4);
+    border-radius: 999px;
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  }
+  .lang button {
+    border: none; background: transparent; color: var(--pink-light);
+    font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 12px;
+    letter-spacing: 0.08em; padding: 7px 13px; border-radius: 999px; cursor: pointer;
+  }
+  .lang button.on { background: var(--pink-light); color: var(--brown); }
+
+  .show-banner {
+    border: 1.5px dashed var(--pink-deep);
+    background: var(--pink-light);
+    color: var(--brown);
+    font-weight: 800; font-size: 13px;
+    padding: 9px 18px; border-radius: 50px;
+    margin-bottom: 16px;
+  }
+
+  /* ══════════════════════════════════════
+     MODERN DESIGN  (same colors, fonts, layout — refreshed)
+  ══════════════════════════════════════ */
+  html[data-design="modern"] body {
+    background: linear-gradient(180deg, #FFF1F4 0%, #FFE3EA 55%, #FFD3DD 100%);
+  }
+  html[data-design="modern"] .header {
+    background: radial-gradient(130% 150% at 50% 0%, #6a4630 0%, var(--brown) 65%);
+    border-radius: 0 0 36px 36px;
+    padding: 36px 24px 38px;
+    box-shadow: 0 14px 32px rgba(81,55,36,0.2);
+  }
+  html[data-design="modern"] .header::after { display: none; }
+  html[data-design="modern"] .logo { letter-spacing: -0.5px; text-shadow: 0 2px 14px rgba(242,167,176,0.25); }
+  html[data-design="modern"] .logo-tag { letter-spacing: 0.16em; opacity: 0.95; }
+
+  html[data-design="modern"] .welcome-body { margin-top: 30px; }
+  html[data-design="modern"] .spin-body    { margin-top: 30px; }
+  html[data-design="modern"] .result-body  { margin-top: 30px; }
+  html[data-design="modern"] .howto-body   { margin-top: 30px; }
+
+  html[data-design="modern"] .prize-chip {
+    background: #fff; border: none; border-radius: 20px;
+    padding: 16px 12px;
+    box-shadow: 0 8px 22px rgba(193,39,45,0.16);
+  }
+  html[data-design="modern"] .prize-chip span { font-size: 24px; }
+
+  html[data-design="modern"] .btn-primary {
+    background: linear-gradient(135deg, #5e3f2a, var(--brown));
+    box-shadow: 0 14px 28px rgba(81,55,36,0.3);
+  }
+  html[data-design="modern"] .btn-primary:active { transform: scale(0.97); box-shadow: 0 6px 14px rgba(81,55,36,0.3); }
+  html[data-design="modern"] .btn-ghost { color: var(--brown-mid); }
+
+  html[data-design="modern"] .spin-launch {
+    background: linear-gradient(135deg, #e0708a, var(--pink-deep));
+    box-shadow: 0 14px 28px rgba(193,39,45,0.42);
+  }
+  html[data-design="modern"] .spin-launch:active { transform: scale(0.97); box-shadow: 0 6px 14px rgba(193,39,45,0.42); }
+  html[data-design="modern"] #wheel { filter: drop-shadow(0 16px 24px rgba(81,55,36,0.22)); }
+  html[data-design="modern"] .wheel-hub { box-shadow: 0 6px 16px rgba(0,0,0,0.28); }
+
+  html[data-design="modern"] .won-badge { background: linear-gradient(135deg, #e0708a, var(--pink-deep)); box-shadow: 0 8px 18px rgba(193,39,45,0.35); }
+  html[data-design="modern"] .timer-box {
+    background: radial-gradient(120% 160% at 50% 0%, #6a4630 0%, var(--brown) 70%);
+    border-radius: 24px; box-shadow: 0 14px 28px rgba(81,55,36,0.25);
+  }
+
+  html[data-design="modern"] .tabs {
+    background: rgba(81,55,36,0.07); border: none; border-radius: 18px;
+    padding: 5px; gap: 4px; margin-bottom: 12px; overflow: visible;
+  }
+  html[data-design="modern"] .tab { border-radius: 14px; }
+  html[data-design="modern"] .tab.active { box-shadow: 0 6px 14px rgba(81,55,36,0.25); }
+  html[data-design="modern"] .tab-panel {
+    background: #fff; border: none; border-radius: 24px;
+    box-shadow: 0 12px 32px rgba(81,55,36,0.1);
+  }
+  html[data-design="modern"] .step-pill { background: #FFF0EA; border-radius: 16px; }
+  html[data-design="modern"] .counter-note { border-radius: 16px; background: #FFF0EA; }
+  html[data-design="modern"] .btn-insta { border-radius: 18px; box-shadow: 0 10px 22px rgba(220,39,67,0.28); }
+  html[data-design="modern"] .btn-google { border-radius: 18px; border: 1.5px solid #e8e8e8; box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+  html[data-design="modern"] .btn-insta:active,
+  html[data-design="modern"] .btn-google:active { transform: scale(0.98); }
+
+  html[data-design="modern"] .how-num { box-shadow: 0 6px 14px rgba(81,55,36,0.25); }
+  html[data-design="modern"] .hr { background: rgba(193,39,45,0.3); }
+  html[data-design="modern"] .show-banner { background: #fff; box-shadow: 0 6px 16px rgba(193,39,45,0.16); }
+
+  /* ══════════════════════════════════════
+     CHRISTMAS EDITION
+  ══════════════════════════════════════ */
+  /* string lights along the top of every header */
+  .header::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 18px;
+    pointer-events: none; z-index: 2;
+    background:
+      radial-gradient(circle at 12px 10px, #ff4b55 0 4px, transparent 5px),
+      radial-gradient(circle at 36px 10px, #ffd75e 0 4px, transparent 5px),
+      radial-gradient(circle at 60px 10px, #4fd18b 0 4px, transparent 5px),
+      radial-gradient(circle at 84px 10px, #7cc4ff 0 4px, transparent 5px),
+      linear-gradient(rgba(255,243,236,0.35), rgba(255,243,236,0.35)) 0 4px / 100% 1px no-repeat;
+    background-size: 96px 18px, 96px 18px, 96px 18px, 96px 18px, 100% 1px;
+    background-repeat: repeat-x, repeat-x, repeat-x, repeat-x, no-repeat;
+    filter: drop-shadow(0 0 4px rgba(255,215,94,0.7));
+    animation: twinkle 1.8s ease-in-out infinite alternate;
+  }
+  @keyframes twinkle { from { opacity: 0.55; } to { opacity: 1; } }
+  .lang { top: 26px; }
+  .music-btn {
+    position: absolute; top: 26px; left: 14px; z-index: 30;
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1px solid rgba(255,243,236,0.4);
+    background: rgba(255,243,236,0.14);
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    font-size: 17px; line-height: 1; cursor: pointer; color: var(--pink-light);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .music-btn.off { opacity: 0.7; }
+
+  .logo::after { content: ' 🎄'; font-style: normal; font-size: 0.55em; vertical-align: 0.35em; }
+
+  /* santa hat on the big cookie */
+  .big-cookie { position: relative; display: inline-block; }
+  .big-cookie::before {
+    content: ''; position: absolute; top: -14px; left: 50%; margin-left: -34px;
+    width: 0; height: 0;
+    border-left: 30px solid transparent; border-right: 30px solid transparent;
+    border-bottom: 42px solid var(--pink-deep);
+    transform: rotate(-14deg); transform-origin: 50% 100%; z-index: 2;
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));
+  }
+  .big-cookie::after {
+    content: ''; position: absolute; top: -26px; left: 50%; margin-left: -14px;
+    width: 14px; height: 14px; border-radius: 50%; background: #fff; z-index: 3;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.06);
+  }
+
+  .prize-chip { border-color: var(--pink-deep); }
+  html[data-design="modern"] .prize-chip { border: none; box-shadow: 0 8px 22px rgba(193,39,45,0.16); }
+  html[data-design="modern"] .prize-chip:nth-child(odd)  { border-top: 4px solid var(--pink-deep); }
+  html[data-design="modern"] .prize-chip:nth-child(even) { border-top: 4px solid #2F6B4D; }
+
+  /* ── COOKIERY BRAND LAYER: milky pink, brown script sign, cream accents ── */
+  html[data-design="modern"] .header {
+    background: linear-gradient(180deg, #FFB6C4 0%, #FFC0CB 50%, #FFD2DB 100%);
+    box-shadow: 0 14px 32px rgba(212,99,122,0.28);
+  }
+  .header::before { background-image:
+      radial-gradient(circle at 12px 10px, #ff4b55 0 4px, transparent 5px),
+      radial-gradient(circle at 36px 10px, #fff3b0 0 4px, transparent 5px),
+      radial-gradient(circle at 60px 10px, #3fae76 0 4px, transparent 5px),
+      radial-gradient(circle at 84px 10px, #ffffff 0 4px, transparent 5px),
+      linear-gradient(rgba(81,55,36,0.35), rgba(81,55,36,0.35));
+    filter: drop-shadow(0 0 4px rgba(255,255,255,0.9));
+  }
+  /* logo = the pink storefront sign: soft pill, brown script, brown edge */
+  html[data-design="modern"] .logo {
+    display: inline-block;
+    font-family: 'Pacifico', 'Playfair Display', cursive; font-style: normal;
+    font-size: 38px; letter-spacing: 0; line-height: 1.15;
+    color: var(--brown); text-shadow: none;
+    background: #FFE9EE; border-radius: 999px;
+    padding: 4px 30px 9px;
+    box-shadow: 0 5px 0 var(--brown), 0 14px 22px rgba(81,55,36,0.18);
+  }
+  .logo::after { font-size: 0.45em; vertical-align: 0.5em; }
+  html[data-design="modern"] .logo-tag { color: var(--brown); opacity: 0.85; margin-top: 14px; font-weight: 800; }
+  .lang { background: rgba(255,255,255,0.45); border-color: rgba(81,55,36,0.3); }
+  .lang button { color: var(--brown); }
+  .lang button.on { background: var(--brown); color: var(--cream); }
+  .music-btn { background: rgba(255,255,255,0.45); border-color: rgba(81,55,36,0.3); color: var(--brown); }
+  .btn-primary, .tab.active, .step-pill-num, .how-num { color: var(--cream); }
+  .big-cookie::before { border-bottom-color: var(--xmas-red); }
+  /* neon-pink glow like the shop window */
+  html[data-design="modern"] .spin-launch {
+    background: linear-gradient(135deg, #f0829a, #D4637A);
+    box-shadow: 0 14px 28px rgba(212,99,122,0.45), 0 0 24px rgba(255,120,160,0.35);
+  }
+  html[data-design="modern"] .timer-box { color: var(--cream); }
+  html[data-design="modern"] .prize-chip { background: #FFF8F5; }
+  html[data-design="modern"] .prize-chip:nth-child(odd) { border-top-color: var(--xmas-red); }
+  html[data-design="modern"] .tab-panel { background: #FFF8F5; }
+  html[data-design="modern"] .step-pill, html[data-design="modern"] .counter-note { background: #FFE4EA; }
+  .welcome-title { color: var(--brown); }
+
+  /* snow sits BEHIND the game (cards, text, wheel) so it never covers anything */
+  #snow { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; }
+  .app { z-index: 1; }
+  .wheel-pin { border-top-color: var(--xmas-red); }
+
+  /* ── MOTION: Santa flies across, lights pop on behind him, then chase-twinkle ── */
+  .header::before { display: none !important; }
+  .lights { position: absolute; top: 0; left: 0; right: 0; height: 30px; display: flex; justify-content: space-between; align-items: flex-start; padding: 0 10px; pointer-events: none; z-index: 3; }
+  .lights::before { content: ''; position: absolute; left: 0; right: 0; top: 3px; height: 1.5px; background: rgba(81,55,36,0.45); }
+  .bulb { position: relative; width: 9px; height: 13px; margin-top: 5px; background: var(--c); border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%; opacity: 0.3; animation: ignite 14s linear infinite both; animation-delay: var(--d); }
+  .bulb:nth-child(even) { margin-top: 11px; }
+  .bulb::before { content: ''; position: absolute; top: -4px; left: 2px; width: 5px; height: 5px; background: #7A5640; border-radius: 1px; }
+  .bulb::after { content: ''; position: absolute; inset: -6px; border-radius: 50%; background: radial-gradient(circle, var(--c) 0%, transparent 70%); opacity: 0.2; animation: glow 1.4s ease-in-out infinite alternate; animation-delay: var(--g); }
+  @keyframes ignite { 0% { opacity: 0.3; transform: scale(1); } 1% { opacity: 1; transform: scale(1.6); } 2.5% { opacity: 1; transform: scale(1); } 92% { opacity: 1; } 97%, 100% { opacity: 0.3; } }
+  @keyframes glow { from { opacity: 0.25; } to { opacity: 0.9; } }
+  .santa { position: absolute; top: -8px; left: -16%; font-size: 24px; line-height: 1; white-space: nowrap; pointer-events: none; z-index: 4; animation: fly 14s linear infinite; filter: drop-shadow(0 0 6px rgba(255,230,150,0.9)); }
+  .santa i { display: inline-block; font-style: normal; animation: bob 0.5s ease-in-out infinite alternate; }
+  @keyframes fly { 0% { left: -16%; } 25% { left: 104%; } 100% { left: 104%; } }
+  @keyframes bob { from { transform: translateY(0) rotate(-3deg); } to { transform: translateY(5px) rotate(3deg); } }
+
+  /* ── MOTION: floating, breathing, entrances ── */
+  @keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes sway { 0%, 100% { transform: rotate(-1.4deg); } 50% { transform: rotate(1.4deg); } }
+  @keyframes breatheBrown { 0%, 100% { box-shadow: 0 14px 28px rgba(81,55,36,0.3), 0 0 0 0 rgba(193,39,45,0.0); } 50% { box-shadow: 0 14px 28px rgba(81,55,36,0.3), 0 0 0 9px rgba(193,39,45,0.14); } }
+  @keyframes breathePink { 0%, 100% { box-shadow: 0 14px 28px rgba(212,99,122,0.45), 0 0 24px rgba(255,120,160,0.35); } 50% { box-shadow: 0 14px 28px rgba(212,99,122,0.45), 0 0 38px 6px rgba(255,120,160,0.6); } }
+  html[data-design="modern"] .logo { animation: sway 5s ease-in-out infinite; }
+  .prize-chip { animation: floaty 3.6s ease-in-out infinite; }
+  .prize-chip:nth-child(2) { animation-delay: 0.5s; }
+  .prize-chip:nth-child(3) { animation-delay: 1s; }
+  .prize-chip:nth-child(4) { animation-delay: 1.5s; }
+  .welcome-title, .welcome-sub { animation: rise 0.6s ease both; }
+  .welcome-sub { animation-delay: 0.12s; }
+  .welcome-body .btn-primary { animation: rise 0.6s 0.35s ease both, breatheBrown 2.4s 1s ease-in-out infinite; }
+  html[data-design="modern"] .spin-launch { animation: breathePink 2s ease-in-out infinite; }
+  .prize-emoji { animation: pop 0.4s cubic-bezier(0.34,1.56,0.64,1) both, floaty 3s 0.6s ease-in-out infinite; }
+  .won-badge { animation: rise 0.5s ease both; }
+  .wheel-pin.tick { animation: tick 0.16s linear infinite; transform-origin: 50% 0; }
+  @keyframes tick { 0%, 100% { transform: translateX(-50%) rotate(0); } 50% { transform: translateX(-50%) rotate(-14deg); } }
+  @media (prefers-reduced-motion: reduce) {
+    .santa, .bulb::after, .prize-chip, .logo, .btn-primary, .spin-launch, .prize-emoji { animation: none !important; }
+    .santa { display: none; } .bulb { animation: none; opacity: 1; }  }
+</style>
+<!-- PostHog analytics -->
+<script>
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init('phc_pHewj2LSRS4M93HCYm5EKHDy6HbczyTYFNGjuWCa6B59', {
+  api_host: 'https://eu.i.posthog.com',
+  defaults: '2026-05-30',
+  person_profiles: 'identified_only'
+});
+function track(name, props) { try { posthog.capture(name, props || {}); } catch (e) {} }
+</script>
+</head>
+<body>
+<div class="app">
+
+<!-- MUSIC TOGGLE -->
+<button type="button" class="music-btn" id="musicBtn" onclick="toggleMusic()" aria-label="christmas music">🔔</button>
+
+<!-- LANGUAGE SWITCH -->
+<div class="lang" id="langSwitch" aria-label="language">
+  <button type="button" id="lang-pl" onclick="setLang('pl')">PL</button>
+  <button type="button" id="lang-en" onclick="setLang('en')">EN</button>
+</div>
+
+<!-- ════════════ SCREEN 1 — WELCOME ════════════ -->
+<div class="screen active" id="s-welcome">
+  <div class="header">
+    <div class="logo">cookiery</div>
+    <div class="logo-tag" data-i18n="tagline"></div>
+  </div>
+
+  <div class="welcome-body">
+    <span class="big-cookie">🍪</span>
+    <h1 class="welcome-title" data-i18n-html="welcomeTitle"></h1>
+    <p class="welcome-sub" data-i18n="welcomeSub"></p>
+
+    <div class="prizes-row">
+      <div class="prize-chip"><span>🎁</span><div data-i18n="chip1"></div></div>
+      <div class="prize-chip"><span>📦</span><div data-i18n="chip2"></div></div>
+      <div class="prize-chip"><span>⭐</span><div data-i18n="chip3"></div></div>
+      <div class="prize-chip"><span>🍪</span><div data-i18n="chip4"></div></div>
+    </div>
+
+    <button class="btn btn-primary" onclick="go('s-spin')" data-i18n="btnSpin"></button>
+    <button class="btn btn-ghost" onclick="go('s-howto')" data-i18n="btnHow"></button>
+
+    <div style="margin-top:24px; font-size:12px; color:var(--brown-mid); text-align:center; line-height:1.7;" data-i18n-html="foot"></div>
+  </div>
+</div>
+
+
+<!-- ════════════ SCREEN 2 — SPIN ════════════ -->
+<div class="screen" id="s-spin">
+  <div class="header">
+    <div class="logo">cookiery</div>
+    <div class="logo-tag" data-i18n="spinTag"></div>
+  </div>
+
+  <div class="spin-body">
+    <div class="spin-title" data-i18n="spinTitle"></div>
+    <div class="spin-sub" data-i18n="spinSub"></div>
+
+    <div class="wheel-wrap">
+      <div class="wheel-pin"></div>
+      <canvas id="wheel" width="300" height="300"></canvas>
+      <div class="wheel-hub">🎄</div>
+    </div>
+
+    <button class="spin-launch" id="spinBtn" onclick="spinWheel()" data-i18n="spinBtn"></button>
+    <button class="btn btn-ghost" onclick="go('s-welcome')" style="margin-top:16px;" data-i18n="back"></button>
+  </div>
+</div>
+
+
+<!-- ════════════ SCREEN 3 — RESULT ════════════ -->
+<div class="screen" id="s-result">
+  <div class="header">
+    <div class="logo">cookiery</div>
+    <div class="logo-tag" id="resultTag"></div>
+  </div>
+
+  <div class="result-body">
+    <div class="won-badge" data-i18n="congrats"></div>
+    <div class="prize-emoji" id="r-emoji">🏆</div>
+    <div class="prize-title" id="r-title"></div>
+    <div class="prize-desc" id="r-desc"></div>
+
+    <div class="show-banner" data-i18n="showCashier"></div>
+
+    <div class="timer-box">
+      <div class="timer-label" data-i18n="timerLabel"></div>
+      <div class="timer-digits" id="countdown">10:00</div>
+    </div>
+
+    <div class="action-heading" data-i18n="actionHeading"></div>
+    <div class="action-sub" data-i18n-html="actionSub"></div>
+
+    <!-- TABS -->
+    <div class="tabs" style="width:100%;">
+      <button class="tab active" onclick="switchTab('insta')" id="tab-insta">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        <span data-i18n="tabInsta"></span>
+      </button>
+      <button class="tab" onclick="switchTab('google')" id="tab-google">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        <span data-i18n="tabGoogle"></span>
+      </button>
+    </div>
+
+    <!-- INSTA PANEL -->
+    <div class="tab-panel active" id="panel-insta">
+      <div class="step-pills">
+        <div class="step-pill"><div class="step-pill-num">1</div><div class="step-pill-text" data-i18n-html="igS1"></div></div>
+        <div class="step-pill"><div class="step-pill-num">2</div><div class="step-pill-text" data-i18n-html="igS2"></div></div>
+        <div class="step-pill"><div class="step-pill-num">3</div><div class="step-pill-text" data-i18n-html="igS3"></div></div>
+        <div class="step-pill"><div class="step-pill-num">4</div><div class="step-pill-text" data-i18n-html="igS4"></div></div>
+      </div>
+      <a href="https://www.instagram.com/cookiery.pl?igsh=MTFwcWV5dGUwYW81Zg%3D%3D&utm_source=qr" target="_blank" rel="noopener" onclick="track('instagram_button_click')" style="width:100%; text-decoration:none;">
+        <button class="btn btn-insta" style="width:100%;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <span data-i18n="igBtn"></span>
+        </button>
+      </a>
+      <div class="counter-note" data-i18n="igNote"></div>
+    </div>
+
+    <!-- GOOGLE PANEL -->
+    <div class="tab-panel" id="panel-google">
+      <div class="step-pills">
+        <div class="step-pill"><div class="step-pill-num">1</div><div class="step-pill-text" data-i18n-html="gS1"></div></div>
+        <div class="step-pill"><div class="step-pill-num">2</div><div class="step-pill-text" data-i18n-html="gS2"></div></div>
+        <div class="step-pill"><div class="step-pill-num">3</div><div class="step-pill-text" data-i18n-html="gS3"></div></div>
+      </div>
+      <a href="https://maps.app.goo.gl/q54bDQELWuNKubjD8" target="_blank" rel="noopener" onclick="track('google_review_button_click')" style="width:100%; text-decoration:none;">
+        <button class="btn btn-google" style="width:100%;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          <span data-i18n="gBtn"></span>
+        </button>
+      </a>
+      <div class="counter-note" data-i18n="gNote"></div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ════════════ SCREEN 4 — HOW IT WORKS ════════════ -->
+<div class="screen" id="s-howto">
+  <div class="header">
+    <div class="logo">cookiery</div>
+    <div class="logo-tag" data-i18n="howTag"></div>
+  </div>
+
+  <div class="howto-body">
+    <div class="howto-title" data-i18n="howTitle"></div>
+
+    <div class="how-step">
+      <div class="how-num">1</div>
+      <div class="how-content">
+        <div class="how-head" data-i18n="h1h"></div>
+        <div class="how-text" data-i18n="h1t"></div>
+      </div>
+    </div>
+    <div class="how-step">
+      <div class="how-num">2</div>
+      <div class="how-content">
+        <div class="how-head" data-i18n="h2h"></div>
+        <div class="how-text" data-i18n="h2t"></div>
+      </div>
+    </div>
+    <div class="how-step">
+      <div class="how-num">3</div>
+      <div class="how-content">
+        <div class="how-head" data-i18n="h3h"></div>
+        <div class="how-text" data-i18n="h3t"></div>
+      </div>
+    </div>
+
+    <div class="hr"></div>
+    <div class="fine-print" data-i18n-html="fine"></div>
+
+    <button class="btn btn-primary" onclick="go('s-spin')" style="width:100%;" data-i18n="spinNow"></button>
+    <button class="btn btn-ghost" onclick="go('s-welcome')" data-i18n="back"></button>
+  </div>
+</div>
+
+</div><!-- /app -->
+
+<canvas id="confetti"></canvas>
+
+<script>
+/* ── TEXTS (PL default / EN) ── */
+const I18N = {
+  pl: {
+    tagline: 'świąteczna edycja · nocny market · warszawa',
+    welcomeTitle: 'stoisz w kolejce.<br>wpadnij w świąteczny nastrój.',
+    welcomeSub: 'zakręć świątecznym kołem, czekając — wylosuj prezent, zrób szybką akcję i odbierz go przy ladzie. 🎅',
+    chip1: '2 zł taniej', chip2: '3 zł taniej przy boxie 6 szt.', chip3: 'darmowy dodatek', chip4: 'ciastko cynamonowe za 5 zł',
+    btnSpin: 'zakręć kołem!', btnHow: 'jak to działa?',
+    foot: '🍪 pieczone świeżo co godzinę · zawsze ciepłe<br>📍 nocny market, warszawa · pt – nd',
+    spinTag: 'twój prezent czeka', spinTitle: 'zakręć i wygraj 🎁',
+    spinSub: 'jeden obrót na wizytę · wszystkie nagrody są prawdziwe',
+    spinBtn: 'kręć!', back: '← wstecz',
+    wonTag: '🎉 wygrałeś: ', congrats: '🎉 gratulacje!',
+    showCashier: '👀 pokaż ten ekran przy ladzie',
+    timerLabel: 'pokaż przy ladzie w ciągu',
+    actionHeading: 'jeszcze jedna rzecz 🙏',
+    actionSub: 'wybierz relację na insta <strong>lub</strong> opinię w google — każda odblokowuje nagrodę.',
+    tabInsta: 'instagram', tabGoogle: 'opinia google',
+    igS1: 'otwórz instagram i przejdź do relacji',
+    igS2: 'zrób zdjęcie/wideo stoiska lub swojego ciastka 🍪',
+    igS3: 'oznacz <strong>@cookiery.pl</strong> w relacji',
+    igS4: 'pokaż nam relację na żywo przy ladzie',
+    igBtn: 'otwórz instagram →',
+    igNote: '📱 wróć tutaj po dodaniu relacji i pokaż nam przy ladzie!',
+    gS1: 'kliknij przycisk poniżej, aby otworzyć opinie google',
+    gS2: 'zostaw nam opinię ⭐⭐⭐⭐⭐ — wystarczy jedno zdanie!',
+    gS3: 'wróć i pokaż nam opinię przy ladzie',
+    gBtn: 'dodaj opinię w google →',
+    gNote: '⭐ pokaż nam dodaną opinię przy ladzie, aby odebrać nagrodę!',
+    howTag: 'jak to działa', howTitle: 'proste jak 1-2-3 🍪',
+    h1h: 'zakręć kołem', h1t: 'jeden obrót w czasie oczekiwania. każde pole to prawdziwa nagroda — żadnych żartów.',
+    h2h: 'zrób szybką akcję', h2t: 'dodaj relację na insta z oznaczeniem @cookiery.pl albo zostaw opinię w google. zajmie max 30 sekund. do wyboru.',
+    h3h: 'pokaż nam przy ladzie', h3t: 'pokaż ten ekran z relacją na żywo lub opinią przy zamówieniu. masz 10 minut!',
+    fine: 'jeden obrót na osobę na wizytę.<br>nagrody nie łączą się.<br>zniżka dotyczy ciastek w pełnej cenie.<br>ciastko cynamonowe za 5 zł zamiast 12 zł.',
+    spinNow: 'zakręć teraz!', expired: 'WYGASŁO'
+  },
+  en: {
+    tagline: 'christmas edition · nocny market · warsaw',
+    welcomeTitle: "you're in the queue.<br>get into the christmas spirit.",
+    welcomeSub: 'spin the christmas wheel while you wait — land on a present, do a quick action, claim it at the counter. 🎅',
+    chip1: '2 zł off', chip2: '3 zł off a box of 6', chip3: 'free topping', chip4: 'cinnamon for 5 zł',
+    btnSpin: 'spin the wheel!', btnHow: 'how does it work?',
+    foot: '🍪 baked fresh every hour · always warm<br>📍 nocny market, warsaw · fri – sun',
+    spinTag: 'your present awaits', spinTitle: 'give it a spin 🎁',
+    spinSub: 'one spin per visit · all prizes are real',
+    spinBtn: 'spin!', back: '← back',
+    wonTag: '🎉 you won: ', congrats: '🎉 congratulations!',
+    showCashier: '👀 show this screen at the counter',
+    timerLabel: 'show at the counter within',
+    actionHeading: 'one quick thing first 🙏',
+    actionSub: 'choose insta story <strong>or</strong> google review — either one unlocks your prize.',
+    tabInsta: 'instagram', tabGoogle: 'google review',
+    igS1: 'open instagram and go to your story',
+    igS2: 'take a photo/video of the stall or your cookie 🍪',
+    igS3: 'tag <strong>@cookiery.pl</strong> in the story',
+    igS4: 'show us the live story at the counter',
+    igBtn: 'open instagram →',
+    igNote: '📱 come back here after posting & show us at the counter!',
+    gS1: 'tap the button below to open google reviews',
+    gS2: 'leave us a ⭐⭐⭐⭐⭐ review — a sentence is enough!',
+    gS3: 'come back and show us the review at the counter',
+    gBtn: 'leave a google review →',
+    gNote: '⭐ show us your posted review at the counter to claim your prize!',
+    howTag: 'how it works', howTitle: 'simple as 1-2-3 🍪',
+    h1h: 'spin the wheel', h1t: 'one spin while you wait. every segment is a real prize — no joke prizes.',
+    h2h: 'do a quick action', h2t: 'post an insta story tagging @cookiery.pl, or leave a google review. takes 30 seconds max. your choice.',
+    h3h: 'show us at the counter', h3t: 'show this screen with the live post or review when you order. you have 10 minutes!',
+    fine: 'one spin per person per visit.<br>prizes cannot be combined.<br>discount applies to full-priced cookies.<br>cinnamon cookie for 5 zł instead of 12 zł.',
+    spinNow: 'spin now!', expired: 'EXPIRED'
+  }
+};
+
+/* ── LANGUAGE ── */
+let lang = 'pl';
+try { const s = localStorage.getItem('cookiery_lang'); if (s === 'pl' || s === 'en') lang = s; } catch (e) {}
+function t(k) { return I18N[lang][k]; }
+
+function applyLang() {
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => { el.innerHTML = t(el.dataset.i18nHtml); });
+  document.getElementById('lang-pl').classList.toggle('on', lang === 'pl');
+  document.getElementById('lang-en').classList.toggle('on', lang === 'en');
+  drawWheel(currentAngle);
+  if (resultIdx !== null) { renderResult(); renderTimer(); }
+}
+function setLang(l) {
+  if (l === lang) return;
+  lang = l;
+  try { localStorage.setItem('cookiery_lang', l); } catch (e) {}
+  try { posthog.register({ language: l }); } catch (e) {}
+  track('language_switch', { language: l });
+  applyLang();
+}
+
+/* ── NAVIGATION ── */
+function go(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById(id);
+  el.classList.add('active');
+  el.style.animation = 'none';
+  el.offsetHeight;
+  el.style.animation = '';
+  window.scrollTo(0, 0);
+}
+
+/* ── TABS ── */
+function switchTab(which) {
+  track('action_tab_selected', { method: which });
+  ['insta','google'].forEach(x => {
+    document.getElementById('tab-' + x).classList.toggle('active', x === which);
+    document.getElementById('panel-' + x).classList.toggle('active', x === which);
+  });
+}
+
+/* ── PRIZES ── */
+const PRIZES = [
+  { colors: ['#C1272D', '#513724'], textColors: ['#FFF3EC', '#FFF3EC'], emoji: '🎁',
+    pl: { label: '2 zł\ntaniej', title: '2 zł taniej!', desc: 'Dostajesz 2 zł zniżki na dowolne ciastko z menu. Słodka sprawa!' },
+    en: { label: '2 zł\noff', title: '2 zł off!', desc: 'You get 2 zł off any cookie on the menu. Sweet deal!' } },
+  { colors: ['#2F6B4D', '#C1272D'], textColors: ['#FFF3EC', '#FFF3EC'], emoji: '📦',
+    pl: { label: 'Box 6 szt.\n-3 zł', title: '3 zł taniej przy boxie 6 szt.!', desc: 'Zamów dowolne 6 ciastek i zapłać o 3 zł mniej. Idealne do dzielenia się (albo nie).' },
+    en: { label: '3 zł off\nbox of 6', title: '3 zł off a box of 6!', desc: 'Order any 6 cookies and get 3 zł off the total. Perfect for sharing (or not).' } },
+  { colors: ['#513724', '#2F6B4D'], textColors: ['#FFF3EC', '#FFF3EC'], emoji: '⭐',
+    pl: { label: 'Darmowy\ndodatek', title: 'darmowy dodatek!', desc: 'Dodaj dowolny dodatek do ciastka za darmo. Zapytaj, co jest dziś dostępne!' },
+    en: { label: 'Free\ntopping', title: 'free topping!', desc: "Add any topping to your cookie completely free. Ask us what's available today!" } },
+  { colors: ['#C1272D', '#513724'], textColors: ['#FFF3EC', '#FFF3EC'], emoji: '🍪',
+    pl: { label: 'Cynamon\n5 zł', title: 'ciastko cynamonowe za 5 zł!', desc: 'Nasze słynne ciastko cynamonowe za jedyne 5 zł zamiast 12 zł. Nie ma za co.' },
+    en: { label: 'Cinnamon\n5 zł', title: 'cinnamon cookie for 5 zł!', desc: "Get our famous cinnamon cookie for just 5 zł instead of 12 zł. You're welcome." } }
+];
+// Each prize owns two slices on the wheel (alternating shades)
+const NUM = PRIZES.length * 2;
+function segData(i) {
+  const p = PRIZES[Math.floor(i / 2)], c = i % 2;
+  const txt = p[lang];
+  return { label: txt.label, color: p.colors[c], textColor: p.textColors[c], emoji: p.emoji, title: txt.title, desc: txt.desc };
+}
+
+/* ── WHEEL (drawn sharp on high-density screens) ── */
+const canvas = document.getElementById('wheel');
+const ctx = canvas.getContext('2d');
+const DPR = Math.min(window.devicePixelRatio || 1, 3);
+canvas.width = 300 * DPR;
+canvas.height = 300 * DPR;
+canvas.style.width = '300px';
+canvas.style.height = '300px';
+ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+const CX = 150, CY = 150, R = 140;
+let spinning = false;
+let currentAngle = 0;
+
+function drawWheel(angle) {
+  ctx.clearRect(0, 0, 300, 300);
+  const arc = (2 * Math.PI) / NUM;
+
+  for (let i = 0; i < NUM; i++) {
+    const seg = segData(i);
+    const start = angle + i * arc;
+    const end = start + arc;
+
+    ctx.beginPath();
+    ctx.moveTo(CX, CY);
+    ctx.arc(CX, CY, R, start, end);
+    ctx.closePath();
+    ctx.fillStyle = seg.color;
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    ctx.save();
+    ctx.translate(CX, CY);
+    ctx.rotate(start + arc / 2);
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = seg.textColor;
+    ctx.font = '800 14px Nunito, sans-serif';
+    const lines = seg.label.split('\n');
+    lines.forEach((line, li) => {
+      ctx.fillText(line, R - 12, (li - (lines.length - 1) / 2) * 16);
+    });
+    ctx.restore();
+  }
+
+  ctx.beginPath();
+  ctx.arc(CX, CY, R, 0, 2 * Math.PI);
+  ctx.strokeStyle = '#513724';
+  ctx.lineWidth = 5;
+  ctx.stroke();
+
+  // christmas bulbs around the rim
+  const bulbs = ['#ff4b55', '#ffd75e', '#4fd18b', '#ffffff'];
+  for (let b = 0; b < 24; b++) {
+    const a = angle * 0.15 + b * (2 * Math.PI / 24);
+    const lit = (Math.floor(performance.now() / 450) + b) % 2 === 0;
+    ctx.beginPath();
+    ctx.arc(CX + Math.cos(a) * R, CY + Math.sin(a) * R, lit ? 4.2 : 3.2, 0, 2 * Math.PI);
+    ctx.globalAlpha = lit ? 1 : 0.45;
+    ctx.fillStyle = bulbs[b % 4];
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(81,55,36,0.55)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.globalAlpha = 1;
+  }
+
+  ctx.beginPath();
+  ctx.arc(CX, CY, R - 2, 0, 2 * Math.PI);
+  ctx.strokeStyle = 'rgba(0,0,0,0.12)';
+  ctx.lineWidth = 3;
+  ctx.stroke();
+}
+
+/* ── FAIR DRAW (unchanged) ──
+   Every prize has exactly the same chance, and no prize repeats until
+   all the others have come up. */
+let prizeBag = [];
+let lastPrizeIndex = -1;
+
+function refillBag() {
+  prizeBag = PRIZES.map((_, i) => i);
+  for (let i = prizeBag.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [prizeBag[i], prizeBag[j]] = [prizeBag[j], prizeBag[i]];
+  }
+  if (prizeBag.length > 1 && prizeBag[0] === lastPrizeIndex) {
+    [prizeBag[0], prizeBag[1]] = [prizeBag[1], prizeBag[0]];
+  }
+}
+function drawPrizeIndex() {
+  if (prizeBag.length === 0) refillBag();
+  const idx = prizeBag.shift();
+  lastPrizeIndex = idx;
+  return idx;
+}
+
+/* ── SOUND + VIBRATION ── */
+let audioCtx = null;
+function unlockAudio() {
+  try {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    if (!audioCtx) audioCtx = new AC();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+  } catch (e) {}
+}
+function celebrate() {
+  try { if (navigator.vibrate) navigator.vibrate([90, 50, 140]); } catch (e) {}
+  try {
+    if (!audioCtx) return;
+    [[660, 0], [880, 0.12], [1175, 0.24]].forEach(([f, d]) => {
+      const o = audioCtx.createOscillator(), g = audioCtx.createGain(), t0 = audioCtx.currentTime + d;
+      o.type = 'sine'; o.frequency.value = f;
+      g.gain.setValueAtTime(0.0001, t0);
+      g.gain.exponentialRampToValueAtTime(0.1, t0 + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.3);
+      o.connect(g); g.connect(audioCtx.destination);
+      o.start(t0); o.stop(t0 + 0.32);
+    });
+  } catch (e) {}
+}
+
+/* ── SPIN ── */
+function spinWheel() {
+  if (spinning) return;
+
+  spinning = true;
+  unlockAudio();
+  track('spin_started');
+  document.getElementById('spinBtn').disabled = true;
+  document.querySelector('.wheel-pin').classList.add('tick');
+
+  const prizeIndex = drawPrizeIndex();
+  const winIndex = prizeIndex * 2 + Math.floor(Math.random() * 2);
+
+  const arc = (2 * Math.PI) / NUM;
+  const normalizedCurrent = ((currentAngle % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+  const segmentCenter = (winIndex + 0.5) * arc;
+  const pointerPos = 3 * Math.PI / 2;
+  let offset = (pointerPos - segmentCenter + 2 * Math.PI) % (2 * Math.PI);
+
+  const totalSpins = 8 + Math.floor(Math.random() * 4);
+  const totalRotation = totalSpins * 2 * Math.PI + offset - normalizedCurrent;
+
+  const finalAngle = normalizedCurrent + totalRotation;
+  const startAngle = normalizedCurrent;
+  const duration = 4500;
+  const startTime = performance.now();
+
+  function animate(now) {
+    const elapsed = now - startTime;
+    const p = Math.min(elapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - p, 4);
+    drawWheel(startAngle + totalRotation * ease);
+
+    if (p < 1) {
+      requestAnimationFrame(animate);
+    } else {
+      currentAngle = finalAngle;
+      spinning = false;
+      document.querySelector('.wheel-pin').classList.remove('tick');
+      setTimeout(() => showResult(winIndex), 500);
+    }
+  }
+  requestAnimationFrame(animate);
+}
+
+/* ── RESULT ── */
+let resultIdx = null;
+let expiresAt = 0;
+
+function renderResult() {
+  const seg = segData(resultIdx);
+  document.getElementById('r-emoji').textContent = seg.emoji;
+  document.getElementById('r-title').textContent = seg.title;
+  document.getElementById('r-desc').textContent = seg.desc;
+  document.getElementById('resultTag').textContent = t('wonTag') + seg.title;
+}
+
+function showResult(idx) {
+  resultIdx = idx;
+  expiresAt = Date.now() + 10 * 60 * 1000;
+  renderResult();
+  go('s-result');
+  startCountdown();
+  track('prize_won', { prize: PRIZES[Math.floor(idx / 2)].en.title, language: lang });
+  celebrate();
+  launchConfetti();
+}
+
+/* ── COUNTDOWN ── */
+let timerInterval = null;
+function renderTimer() {
+  const el = document.getElementById('countdown');
+  const rem = Math.max(0, Math.ceil((expiresAt - Date.now()) / 1000));
+  if (rem <= 0) {
+    el.textContent = t('expired');
+    el.style.color = '#C1272D';
+    clearInterval(timerInterval);
+    return;
+  }
+  const m = Math.floor(rem / 60).toString().padStart(2, '0');
+  const s = (rem % 60).toString().padStart(2, '0');
+  el.textContent = m + ':' + s;
+  el.style.color = '';
+}
+function startCountdown() {
+  clearInterval(timerInterval);
+  renderTimer();
+  timerInterval = setInterval(renderTimer, 1000);
+}
+
+/* ── CONFETTI ── */
+function launchConfetti() {
+  const c = document.getElementById('confetti');
+  c.style.display = 'block';
+  const cx = c.getContext('2d');
+  c.width = window.innerWidth;
+  c.height = window.innerHeight;
+  const colors = ['#FFC0CB','#513724','#C1272D','#FFF3EC','#2F6B4D','#FFF8F2'];
+  const pieces = Array.from({length: 90}, () => ({
+    x: Math.random() * c.width,
+    y: -20,
+    w: 6 + Math.random() * 8,
+    h: 4 + Math.random() * 5,
+    color: colors[Math.floor(Math.random() * colors.length)],
+    vy: 2.5 + Math.random() * 4,
+    vx: (Math.random() - 0.5) * 3.5,
+    rot: Math.random() * 360,
+    rs: (Math.random() - 0.5) * 9
+  }));
+  let frame = 0;
+  function draw() {
+    cx.clearRect(0, 0, c.width, c.height);
+    pieces.forEach(p => {
+      cx.save();
+      cx.translate(p.x, p.y);
+      cx.rotate(p.rot * Math.PI / 180);
+      cx.fillStyle = p.color;
+      cx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+      cx.restore();
+      p.y += p.vy; p.x += p.vx; p.rot += p.rs; p.vy += 0.06;
+    });
+    frame++;
+    if (frame < 130) requestAnimationFrame(draw);
+    else { c.style.display = 'none'; }
+  }
+  requestAnimationFrame(draw);
+}
+
+/* ── CHRISTMAS: SNOW ── */
+(function () {
+  const c = document.createElement('canvas');
+  c.id = 'snow';
+  document.body.appendChild(c);
+  const x = c.getContext('2d');
+  let W, H;
+  function size() { W = c.width = window.innerWidth; H = c.height = window.innerHeight; }
+  size();
+  window.addEventListener('resize', size);
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const n = reduce ? 0 : (window.innerWidth < 500 ? 22 : 38);
+  const flakes = Array.from({ length: n }, () => ({
+    x: Math.random() * W, y: Math.random() * H,
+    r: 2.6 + Math.random() * 3.6, v: 0.3 + Math.random() * 0.7,
+    s: Math.random() * Math.PI * 2, d: 0.4 + Math.random() * 0.6,
+    rot: Math.random() * Math.PI, rs: (Math.random() - 0.5) * 0.02
+  }));
+  // six-armed crystal: pointed arms with little V branches
+  function crystal(cx, cy, L, rot) {
+    x.save(); x.translate(cx, cy); x.rotate(rot);
+    x.beginPath();
+    for (let k = 0; k < 6; k++) {
+      x.rotate(Math.PI / 3);
+      x.moveTo(0, 0); x.lineTo(0, -L);
+      x.moveTo(-L * 0.32, -L * 0.82); x.lineTo(0, -L * 0.52); x.lineTo(L * 0.32, -L * 0.82);
+    }
+    x.restore();
+    x.lineCap = 'round'; x.lineJoin = 'round';
+    x.strokeStyle = 'rgba(150,175,205,0.35)'; x.lineWidth = 2.4; x.stroke();
+    x.strokeStyle = 'rgba(255,255,255,0.9)'; x.lineWidth = 1.2; x.stroke();
+  }
+  function tick() {
+    x.clearRect(0, 0, W, H);
+    flakes.forEach(f => {
+      f.y += f.v; f.s += 0.012;
+      f.x += Math.sin(f.s) * f.d;
+      if (f.y > H + 6) { f.y = -6; f.x = Math.random() * W; }
+      if (f.x > W + 6) f.x = -6;
+      if (f.x < -6) f.x = W + 6;
+      f.rot += f.rs;
+      crystal(f.x, f.y, f.r, f.rot);
+    });
+    requestAnimationFrame(tick);
+  }
+  if (n) requestAnimationFrame(tick);
+})();
+
+/* ── CHRISTMAS: MUSIC (synthesized, no audio files) ──
+   Jingle Bells + We Wish You a Merry Christmas — both public domain. */
+const SEMI = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+function noteFreq(n) {
+  const m = n.match(/^([A-G])(#?)(\d)$/);
+  const midi = 12 * (+m[3] + 1) + SEMI[m[1]] + (m[2] ? 1 : 0);
+  return 440 * Math.pow(2, (midi - 69) / 12) * 2; // one octave up = music-box register
+}
+function parseTune(s) { return s.trim().split(/\s+/).map(p => { const [n, d] = p.split(':'); return [n, +d]; }); }
+const JB_A = 'E4:1 E4:1 E4:2 E4:1 E4:1 E4:2 E4:1 G4:1 C4:1.5 D4:.5 E4:4';
+const JB_B = 'F4:1 F4:1 F4:1.5 F4:.5 F4:1 E4:1 E4:1 E4:.5 E4:.5 E4:1 D4:1 D4:1 E4:1 D4:2 G4:2';
+const JB_END = 'F4:1 F4:1 F4:1 F4:1 F4:1 E4:1 E4:1 E4:.5 E4:.5 G4:1 G4:1 F4:1 D4:1 C4:4';
+const TUNES = [
+  { bpm: 150, notes: parseTune([JB_A, JB_B, JB_A, JB_END].join(' ')) },
+  { bpm: 128, notes: parseTune('D4:1 G4:1 G4:.5 A4:.5 G4:.5 F#4:.5 E4:1 E4:1 E4:1 A4:1 A4:.5 B4:.5 A4:.5 G4:.5 F#4:1 D4:1 D4:1 B4:1 B4:.5 C5:.5 B4:.5 A4:.5 G4:1 E4:1 D4:.5 D4:.5 E4:1 A4:1 F#4:1 G4:3') }
+];
+
+let musicOn = false, master = null, pumpTimer = null, nextT = 0, tuneIdx = 0, noiseBuf = null;
+
+function musicNote(f, t, d) {
+  const g = audioCtx.createGain();
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.exponentialRampToValueAtTime(0.17, t + 0.008);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + Math.min(d + 0.5, 1.5));
+  g.connect(master);
+  [[1, 1], [3, 0.25], [5.4, 0.08]].forEach(([mul, amp]) => {
+    const o = audioCtx.createOscillator(), og = audioCtx.createGain();
+    o.type = 'sine'; o.frequency.value = f * mul; og.gain.value = amp;
+    o.connect(og); og.connect(g);
+    o.start(t); o.stop(t + Math.min(d + 0.55, 1.6));
+  });
+}
+function sleighBell(t) {
+  if (!noiseBuf) {
+    noiseBuf = audioCtx.createBuffer(1, Math.floor(audioCtx.sampleRate * 0.09), audioCtx.sampleRate);
+    const ch = noiseBuf.getChannelData(0);
+    for (let i = 0; i < ch.length; i++) ch[i] = Math.random() * 2 - 1;
+  }
+  const s = audioCtx.createBufferSource(); s.buffer = noiseBuf;
+  const bp = audioCtx.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 7200; bp.Q.value = 1.4;
+  const g = audioCtx.createGain();
+  g.gain.setValueAtTime(0.05, t);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + 0.09);
+  s.connect(bp); bp.connect(g); g.connect(master);
+  s.start(t);
+}
+function scheduleTune(tune, t0) {
+  const beat = 60 / tune.bpm;
+  let t = t0;
+  tune.notes.forEach(([n, d]) => { musicNote(noteFreq(n), t, d * beat); t += d * beat; });
+  const total = t - t0;
+  for (let b = 0; b < total / beat; b++) sleighBell(t0 + b * beat);
+  return total;
+}
+function pump() {
+  if (!musicOn || !audioCtx) return;
+  if (audioCtx.currentTime > nextT - 0.8) {
+    nextT += scheduleTune(TUNES[tuneIdx], nextT) + 0.8;
+    tuneIdx = (tuneIdx + 1) % TUNES.length;
+  }
+}
+function setMusicBtn() {
+  const b = document.getElementById('musicBtn');
+  b.textContent = musicOn ? '🔔' : '🔕';
+  b.classList.toggle('off', !musicOn);
+}
+function startMusic() {
+  unlockAudio();
+  if (!audioCtx) return;
+  master = audioCtx.createGain();
+  master.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+  master.gain.linearRampToValueAtTime(0.7, audioCtx.currentTime + 0.4);
+  master.connect(audioCtx.destination);
+  musicOn = true;
+  nextT = audioCtx.currentTime + 0.15;
+  pump();
+  clearInterval(pumpTimer);
+  pumpTimer = setInterval(pump, 400);
+  setMusicBtn();
+}
+function stopMusic() {
+  musicOn = false;
+  clearInterval(pumpTimer);
+  if (master) {
+    const m = master; master = null;
+    m.gain.setTargetAtTime(0, audioCtx.currentTime, 0.05);
+    setTimeout(() => { try { m.disconnect(); } catch (e) {} }, 500);
+  }
+  setMusicBtn();
+}
+function toggleMusic() {
+  if (musicOn) { stopMusic(); try { localStorage.setItem('cookiery_music', 'off'); } catch (e) {} track('music_off'); }
+  else { startMusic(); try { localStorage.setItem('cookiery_music', 'on'); } catch (e) {} track('music_on'); }
+}
+// browsers only allow sound after a tap: start on the first interaction unless the guest muted it before
+let musicMuted = false;
+try { musicMuted = localStorage.getItem('cookiery_music') === 'off'; } catch (e) {}
+function firstTap(e) {
+  document.removeEventListener('pointerdown', firstTap, true);
+  if (e.target.closest && e.target.closest('#musicBtn')) return;
+  if (!musicMuted && !musicOn) startMusic();
+}
+document.addEventListener('pointerdown', firstTap, true);
+document.addEventListener('visibilitychange', () => {
+  if (!audioCtx || !musicOn) return;
+  if (document.hidden) audioCtx.suspend(); else audioCtx.resume();
+});
+setMusicBtn();
+musicOn = false; setMusicBtn();
+document.getElementById('musicBtn').textContent = '🔕';
+
+/* ── CHRISTMAS: string lights + Santa who lights them (one per header) ── */
+document.querySelectorAll('.header').forEach(h => {
+  const cols = ['#ff4b55', '#ffd75e', '#3fae76', '#7cc4ff', '#fff3b0'];
+  const L = document.createElement('div');
+  L.className = 'lights';
+  for (let i = 0; i < 16; i++) {
+    const b = document.createElement('span');
+    b.className = 'bulb';
+    b.style.cssText = '--c:' + cols[i % 5] + ';--d:' + (0.5 + 2.8 * i / 15).toFixed(2) + 's;--g:' + ((i * 0.23) % 1.4).toFixed(2) + 's';
+    L.appendChild(b);
+  }
+  const s = document.createElement('div');
+  s.className = 'santa';
+  s.innerHTML = '<i>✨🎅</i>';
+  h.appendChild(L);
+  h.appendChild(s);
+});
+
+/* wheel bulbs keep twinkling while the wheel is idle */
+(function idleWheel() {
+  if (!spinning && document.getElementById('s-spin').classList.contains('active')) drawWheel(currentAngle);
+  setTimeout(() => requestAnimationFrame(idleWheel), 120);
+})();
+
+/* ── START ── */
+applyLang();
+</script>
+</body>
+</html>
